@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0"/>
+    <title>Title</title>
+    <link rel="stylesheet" href="mobile.css">
+    <script src="mobile.js"></script>
+    <style>
+        #capture{height:100%;position: absolute;top:0;left:0;width:100%;background:#000;display: none}
+        #capture_header{background:#3E3D42;color:white;height: 40px;line-height: 40px;padding:0 1em}
+        #capture_header #arrow{
+            width:12px;height:12px;transform: rotate(45deg);border:2px solid white;display: inline-block;
+            border-right: none;border-top:none;position: absolute;;top:50%;margin-top: -6px;
+        }
+        #capture_header p:first-of-type span:last-of-type{padding-left:1em}
+        #capture_box{position: absolute;top:40px;left:0;bottom:0;right:0}
+        #img_container{margin:0 auto;text-align: center;position: relative}
+
+    </style>
+</head>
+<body>
+    <header>
+        1111
+    </header>
+    <ul >
+        <li id="user_face" class="flex_row flex_justify">
+            <p class="flex_vertical flex_center">用户头像</p>
+            <p class="flex_no">
+                <img src="http://img.mukewang.com/54584e2c00010a2c02200220-200-200.jpg" alt="" id="userPic">
+                <input type="file" id="upload" />
+            </p>
+        </li>
+    </ul>
+    <div id="capture">
+        <div id="capture_header" class="flex_row flex_justify">
+            <p id="cancel">
+                <span id="arrow"></span><span>返回</span>
+            </p>
+            <p id="save">保存</p>
+        </div>
+        <div id="capture_box" class="flex_vertical flex_center">
+            <div id="img_container"></div>
+        </div>
+    </div>
+</body>
+</html>
+<script src="mobile.js"> </script>
+<script>
+    window.onload=function(){
+        var p1=new Capture();
+        var upload=document.querySelector('#upload'),save=document.querySelector('#save')
+        upload.onchange=function(e){
+            p1.init({
+                container:document.getElementById('img_container'),
+                upload:upload,
+                cancel:document.getElementById('cancel')
+            })
+        }
+        save.onclick=function (e) {
+            var data= p1.save(),userPic=document.querySelector('#userPic')
+            userPic.src=data
+            p1.hide();
+
+        }
+
+    }
+
+</script>
